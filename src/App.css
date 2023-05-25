@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  background-image: url("./components/App/9705.jpg");
+  background-size: contain;
+  
+  
 }
 
 .App-logo {
@@ -14,25 +18,26 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  background-image: linear-gradient(to bottom,  black 50%, transparent);
+  padding-bottom: 0.5rem;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+  
+}
+.App-header h1{
+  background-image: linear-gradient(to bottom right, magenta, yellow);
+  background-clip: text;
+  color:transparent;
+}
+
+.App-footer {
+  background-image: linear-gradient(to bottom, transparent, black 50% );
   color: white;
 }
 
 .App-link {
-  color: #61dafb;
+  color: rgb(229, 21, 101);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
