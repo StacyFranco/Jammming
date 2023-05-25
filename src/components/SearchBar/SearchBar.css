@@ -1,0 +1,23 @@
+.SB-nav {
+    padding: 2rem;
+    
+}
+
+.SB-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.name {
+    border-radius: 1rem;
+    font-size: 2.5rem;
+}
+
+.SB-buttom {
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    font-size: 2.5rem;
+    color: gold;
+    background-color: black;
+}
