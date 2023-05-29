@@ -1,0 +1,22 @@
+.SearchResults{
+    box-sizing: content-box;
+    width: 50vh;
+    background-color: rgba(109, 1, 73, 0.8);
+    padding: 2vh 5vh;
+    border-radius: 5vh;
+    border: 0.3vh solid black;
+    margin: 0 2vh;
+    
+}
+
+.SearchResults h2{
+    padding-bottom: 0.5vh;
+    font-size: x-larger;
+}
+
+@media only screen and (max-width: 450px){
+    .SearchResults{
+        padding: 1vh 1.5vh;
+        margin: 0 1vh;
+    }
+}

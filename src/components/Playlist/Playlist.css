@@ -1,0 +1,34 @@
+.Playlist{
+    box-sizing: content-box;
+    width: 50vh;
+    background-color: rgba(109, 1, 73, 0.8);
+    padding: 2vh 5vh;
+    border-radius: 5vh;
+    border: 0.3vh solid black;
+    margin: 0 2vh;
+}
+
+.PlaylistName{
+    background-color: transparent;
+    border: none;
+    border-bottom: 0.5vh solid black;
+    padding-left: 2vh;
+    font-size: large;
+    width: 80%;
+    height: 5vh;
+    margin-bottom: 3vh;
+}
+
+.Playlist ::placeholder{
+    color: gold;
+    font-weight: bold;
+    opacity: 0.8;
+    
+}
+
+@media only screen and (max-width: 450px){
+    .Playlist{
+        padding: 1vh 1.5vh;
+        margin: 0 1vh;
+    }
+}

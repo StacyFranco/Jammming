@@ -1,23 +1,29 @@
 .SB-nav {
-    padding: 2rem;
+    padding: 5vh;
     
 }
 
 .SB-form {
-    display: flex;
-    flex-direction: column;
+    display: flexbox;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
 }
 
 .name {
-    border-radius: 1rem;
-    font-size: 2.5rem;
+    border-radius: 1.5vh;
+    font-size: 4vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 1vh 2vh;
+    width: 60%;
 }
 
 .SB-buttom {
-    padding: 0.5rem 1rem;
-    border-radius: 1rem;
-    font-size: 2.5rem;
+    padding: 1vh 2vh;
+    border-radius: 2vh;
+    font-size: 4vh;
     color: gold;
     background-color: black;
+    margin-left: 2%;
 }

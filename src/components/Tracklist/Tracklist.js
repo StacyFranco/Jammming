@@ -5,8 +5,8 @@ import Track from '../Track/Track';
 function Tracklist() {
     return (
         <div>
-            <Track name="teste" album="teste1" artist="teste2" />
-            <Track name="teste2" album="teste13" artist="teste22" />
+            <Track name="Song1" album="album1" artist="artist1" />
+            <Track name="Song2" album="album2" artist="artist2" />
         </div>
 
     );
