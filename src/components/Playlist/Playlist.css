@@ -25,6 +25,16 @@
     opacity: 0.8;
     
 }
+.Playlist-save{
+    padding: 1vh 2vh;
+    border-radius: 5vh;
+    font-size: 3vh;
+    font-weight: bold;
+    color: gold;
+    background-color: black;
+    margin-left: 2%;
+    margin-top: 5%;
+}
 
 @media only screen and (max-width: 450px){
     .Playlist{

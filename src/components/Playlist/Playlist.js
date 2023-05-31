@@ -2,14 +2,13 @@ import React from 'react';
 import Tracklist from '../Tracklist/Tracklist';
 import "./Playlist.css"
 
-function Playlist () {
-    return(
+function Playlist(props) {
+    return (
         <div className='Playlist'>
             <h2>Playlist</h2>
-            <form>
-                <input type='text' className='PlaylistName' placeholder='Playlist Name'></input>
-            </form>
-            <Tracklist />
+            <input type='text' className='PlaylistName' placeholder='Playlist Name'></input>
+            <Tracklist tracks={props.savedTracks} onRemove={props.onRemove} />
+            <button className="Playlist-save" onClick={props.onSave}>Save to Spotify</button>
         </div>
     );
 };

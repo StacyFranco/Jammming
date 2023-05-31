@@ -2,11 +2,21 @@ import React from 'react';
 import Track from '../Track/Track';
 
 
-function Tracklist() {
+function Tracklist(props) {
     return (
         <div>
-            <Track name="Song1" album="album1" artist="artist1" />
-            <Track name="Song2" album="album2" artist="artist2" />
+            {/* it was need to use ? beccause was given an error of undefined map*/
+            props.tracks?.map((track) => {
+            return (
+            <Track
+                track={track}
+                key={track.id} 
+                onAdd={props.onAdd}
+                onRemove={props.onRemove}
+            /> )}
+        )}
+               
+            
         </div>
 
     );
