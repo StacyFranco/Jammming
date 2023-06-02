@@ -1,14 +1,12 @@
 .SB-nav {
     padding: 5vh;
-    
-}
-
-.SB-form {
     display: flexbox;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 }
+
+
 
 .name {
     border-radius: 1.5vh;

@@ -3,6 +3,7 @@ import './App.css';
 import SearchBar from './components/SearchBar/SearchBar';
 import SearchResults from './components/SearchResults/SearchResults';
 import Playlist from './components/Playlist/Playlist';
+import Spotify from './API/spotify';
 
 
 const testTracks = [
@@ -13,12 +14,28 @@ const testTracks = [
   //{name: "thrive", artist: "Casting Crowns", album: "Thrive", id:1}
 ];
 function App() {
-  const [trackSearched, setTrackSearched] = useState(testTracks);
-  const [searchResults, setSearchResults] = useState(testTracks);
-  const [savedTracks, setSavedTracks] = useState([]);
+  Spotify.getAccessToken();
 
-  const search = () => {
-    setTrackSearched(testTracks);
+  const [trackSearched, setTrackSearched] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
+  const [savedTracks, setSavedTracks] = useState([]);
+  const [playlistName, setPlaylistName] = useState("New Playlist");
+
+  const search = (term) => {
+    //setTrackSearched(testTracks);
+    Spotify.search(term).then(setSearchResults);
+    (setTrackSearched(searchResults.filter(track =>
+      !savedTracks.includes(track)))); 
+  };
+  const updatePlaylistName = (name) => {
+    setPlaylistName(name);
+  };
+  const savePlaylist = () => {
+    const trackUris = savedTracks.map((track) => track.uri);
+    Spotify.savePlaylist(playlistName, trackUris).then(() => {
+      setPlaylistName("New Playlist");
+      setSavedTracks([]);
+    });
   };
 
   const addTrack = (track) => {
@@ -40,20 +57,26 @@ function App() {
         currentTrack.id !== track.id)
     );
     //realocating the trak on the search... right now misses one render to be updated with the 
-    setTrackSearched(searchResults.filter(track =>
+    setTrackSearched(searchResults.filter((track) =>
        !savedTracks.includes(track)));
   };
 
-
+  
   return (
     <div className="App">
       <header className="App-header">
         <h1>Jammming</h1>
       </header>
-      <SearchBar />
+      <SearchBar onSearch={search} />
       <main className="App-main">
         <SearchResults trackSearched={trackSearched} onAdd={addTrack} />
-        <Playlist savedTracks={savedTracks} onRemove={removeTrack} />
+        <Playlist 
+          playlistName={playlistName} 
+          onNameChange={updatePlaylistName} 
+          savedTracks={savedTracks} 
+          onRemove={removeTrack} 
+          onSave={savePlaylist} 
+          />
       </main>
       <footer className="App-footer">
         <p>copyright</p>
