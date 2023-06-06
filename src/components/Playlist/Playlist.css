@@ -6,6 +6,8 @@
     border-radius: 5vh;
     border: 0.3vh solid black;
     margin: 0 2vh;
+    margin-bottom: 10vh;
+    overflow: scroll;
 }
 
 .PlaylistName{
@@ -17,6 +19,8 @@
     width: 80%;
     height: 5vh;
     margin-bottom: 3vh;
+    color: gold;
+    font-weight: bold;
 }
 
 .Playlist ::placeholder{

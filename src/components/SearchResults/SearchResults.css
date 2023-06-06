@@ -6,6 +6,8 @@
     border-radius: 5vh;
     border: 0.3vh solid black;
     margin: 0 2vh;
+    margin-bottom: 10vh;
+    overflow: scroll;
     
 }
 

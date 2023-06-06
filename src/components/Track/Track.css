@@ -1,7 +1,8 @@
 .track{
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 3fr 3fr 1fr;
     grid-template-rows: auto auto;
+    border-bottom: 1px solid goldenrod;
 }
 
 .SongName{

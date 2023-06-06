@@ -13,23 +13,34 @@ const testTracks = [
   { name: "I Do Believe", artist: "Gaither Vocal Band", album: "I Do Believe", id: 4 },
   //{name: "thrive", artist: "Casting Crowns", album: "Thrive", id:1}
 ];
+
+let searchResults = [];
+  let searchResultsFiltered = [];
+
 function App() {
   Spotify.getAccessToken();
 
   const [trackSearched, setTrackSearched] = useState([]);
-  const [searchResults, setSearchResults] = useState([]);
+  //const [searchResults, setSearchResults] = useState([]);
   const [savedTracks, setSavedTracks] = useState([]);
   const [playlistName, setPlaylistName] = useState("New Playlist");
+  
 
-  const search = (term) => {
+  const search = async (term) => {
     //setTrackSearched(testTracks);
-    Spotify.search(term).then(setSearchResults);
-    (setTrackSearched(searchResults.filter(track =>
-      !savedTracks.includes(track)))); 
+    const test = await Spotify.search(term).then((res) => {
+      searchResults = res });
+    //  Spotify.search(term).then(setSearchResults);
+      // Function to filter saved tracks from the search side
+    searchResultsFiltered = searchResults.filter(track =>
+      !savedTracks.some(item => item.id === track.id));
+    setTrackSearched(searchResultsFiltered);
   };
+
   const updatePlaylistName = (name) => {
     setPlaylistName(name);
   };
+
   const savePlaylist = () => {
     const trackUris = savedTracks.map((track) => track.uri);
     Spotify.savePlaylist(playlistName, trackUris).then(() => {
@@ -43,7 +54,7 @@ function App() {
     if (savedTracks.some((savedTrack) => savedTrack.id === track.id))
       return;
     setSavedTracks((prevTracks) => [...prevTracks, track])
-    console.log(savedTracks)
+    //console.log(savedTracks)
     //removing track from trackSearched
     setTrackSearched((prevTracks) =>
       prevTracks.filter((currentTrack) =>
@@ -57,11 +68,16 @@ function App() {
         currentTrack.id !== track.id)
     );
     //realocating the trak on the search... right now misses one render to be updated with the 
-    setTrackSearched(searchResults.filter((track) =>
-       !savedTracks.includes(track)));
+    console.log(searchResults)
+    console.log(savedTracks)
+    //setTrackSearched(searchResults.filter((track) =>
+    //!savedTracks.some(item => item.id === track.id)));
+    searchResultsFiltered = searchResults.filter(track =>
+      !savedTracks.some(item => item.id === track.id));
+    setTrackSearched(searchResultsFiltered);
   };
 
-  
+
   return (
     <div className="App">
       <header className="App-header">
@@ -70,13 +86,13 @@ function App() {
       <SearchBar onSearch={search} />
       <main className="App-main">
         <SearchResults trackSearched={trackSearched} onAdd={addTrack} />
-        <Playlist 
-          playlistName={playlistName} 
-          onNameChange={updatePlaylistName} 
-          savedTracks={savedTracks} 
-          onRemove={removeTrack} 
-          onSave={savePlaylist} 
-          />
+        <Playlist
+          playlistName={playlistName}
+          onNameChange={updatePlaylistName}
+          savedTracks={savedTracks}
+          onRemove={removeTrack}
+          onSave={savePlaylist}
+        />
       </main>
       <footer className="App-footer">
         <p>copyright</p>
