@@ -15,27 +15,29 @@ const testTracks = [
 ];
 
 let searchResults = [];
-  let searchResultsFiltered = [];
-  let playlistTracks = [];
+let playlistTracks = [];
 
 function App() {
   Spotify.getAccessToken();
+  let playlist = "New Playlist";
 
   const [trackSearched, setTrackSearched] = useState([]);
   //const [searchResults, setSearchResults] = useState([]);
   const [savedTracks, setSavedTracks] = useState([]);
-  const [playlistName, setPlaylistName] = useState("New Playlist");
-  
+  const [playlistName, setPlaylistName] = useState("");
+
 
   const search = async (term) => {
     //setTrackSearched(testTracks);
     const test = await Spotify.search(term).then((res) => {
-      searchResults = res });
+      searchResults = res
+    });
     //  Spotify.search(term).then(setSearchResults);
-      // Function to filter saved tracks from the search side
-    searchResultsFiltered = searchResults.filter(track =>
-      !savedTracks.some(item => item.id === track.id));
-    setTrackSearched(searchResultsFiltered);
+    // Function to filter saved tracks from the search side
+    //searchResultsFiltered = searchResults.filter(track =>
+    setTrackSearched(searchResults.filter(track =>
+      !savedTracks.some(item => item.id === track.id)));
+    //setTrackSearched(searchResultsFiltered);
   };
 
   const updatePlaylistName = (name) => {
@@ -43,10 +45,17 @@ function App() {
   };
 
   const savePlaylist = () => {
+    if(playlistName !== ""){
+      playlist = playlistName};
+    
     const trackUris = savedTracks.map((track) => track.uri);
-    Spotify.savePlaylist(playlistName, trackUris).then(() => {
-      setPlaylistName("New Playlist");
+    Spotify.savePlaylist(playlist, trackUris).then(() => {
+      setPlaylistName("");
       setSavedTracks([]);
+      playlistTracks = [];
+      //setTrackSearched([]);
+      setTrackSearched(searchResults.filter(track =>
+        !playlistTracks.some(item => item.id === track.id)));
     });
   };
 
@@ -60,14 +69,14 @@ function App() {
     setTrackSearched((prevTracks) =>
       prevTracks.filter((currentTrack) =>
         currentTrack.id !== track.id)
-      
+
     );
     console.log(trackSearched);
   };
 
   const removeTrack = (track) => {
     playlistTracks = savedTracks.filter((currentTrack) =>
-    currentTrack.id !== track.id)
+      currentTrack.id !== track.id)
     //console.log(playlistTracks)
     setSavedTracks((prevTracks) =>
       prevTracks.filter((currentTrack) =>
@@ -76,12 +85,12 @@ function App() {
     //realocating the trak on the search... right now misses one render to be updated with the 
     //console.log(searchResults)
     //console.log(savedTracks)
-    //setTrackSearched(searchResults.filter((track) =>
-    //!savedTracks.some(item => item.id === track.id)));
-    searchResultsFiltered = searchResults.filter(track =>
-      !playlistTracks.some(item => item.id === track.id));
-      console.log(searchResultsFiltered);
-    setTrackSearched(searchResultsFiltered);
+    setTrackSearched(searchResults.filter((track) =>
+      !playlistTracks.some(item => item.id === track.id)));
+    // searchResultsFiltered = searchResults.filter(track =>
+    // !playlistTracks.some(item => item.id === track.id));
+    // console.log(searchResultsFiltered);
+    // setTrackSearched(searchResultsFiltered);
   };
 
 

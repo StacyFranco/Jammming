@@ -7,7 +7,7 @@
     border: 0.3vh solid black;
     margin: 0 2vh;
     margin-bottom: 10vh;
-    overflow: scroll;
+    overflow: hidden auto;
 }
 
 .PlaylistName{
@@ -39,6 +39,22 @@
     margin-left: 2%;
     margin-top: 5%;
 }
+
+ /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(75, 1, 50, 0.8);
+    border-top: 5vh solid transparent;
+    border-bottom: 5vh solid transparent;
+    background-clip: padding-box;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(70, 1, 47, 0.8);
+    border-top: 5vh solid transparent;
+    border-bottom: 5vh solid transparent;
+    background-clip: padding-box;
+  } 
 
 @media only screen and (max-width: 450px){
     .Playlist{

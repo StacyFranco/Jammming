@@ -10,12 +10,13 @@ function SearchBar(props) {
     };
 
     const hadleClickSearch = () => {
+        //setTerm("")
         props.onSearch(term)
     }
     return (
         <nav className='SB-nav'>
 
-            <input type="text" className='name' placeholder={"Name of the song"} onChange={handleTermChange}></input>
+            <input type="text" className='name' placeholder={"Name of the song"} onChange={handleTermChange} value={term} ></input>
             <button className='SB-buttom' onClick={hadleClickSearch}>Search</button>
 
         </nav>
