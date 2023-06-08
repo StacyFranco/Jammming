@@ -1,9 +1,9 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import SearchBar from './components/SearchBar/SearchBar';
-import SearchResults from './components/SearchResults/SearchResults';
-import Playlist from './components/Playlist/Playlist';
-import Spotify from './API/spotify';
+import SearchBar from '../SearchBar/SearchBar';
+import SearchResults from '../SearchResults/SearchResults';
+import Playlist from '../Playlist/Playlist';
+import Spotify from '../../API/spotify';
 
 
 const testTracks = [
@@ -111,7 +111,7 @@ function App() {
         />
       </main>
       <footer className="App-footer">
-        <p>copyright</p>
+        <p>© 2023 Stacy Franco, All Rights Reserved </p>
         <p><a
           className="App-link"
           href="https://www.freepik.com/free-vector/abstract-music-background_1250515.htm#query=music%20background&position=43&from_view=search&track=ais"
