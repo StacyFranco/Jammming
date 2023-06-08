@@ -16,6 +16,7 @@ const testTracks = [
 
 let searchResults = [];
   let searchResultsFiltered = [];
+  let playlistTracks = [];
 
 function App() {
   Spotify.getAccessToken();
@@ -54,26 +55,32 @@ function App() {
     if (savedTracks.some((savedTrack) => savedTrack.id === track.id))
       return;
     setSavedTracks((prevTracks) => [...prevTracks, track])
-    //console.log(savedTracks)
+    console.log(savedTracks)
     //removing track from trackSearched
     setTrackSearched((prevTracks) =>
       prevTracks.filter((currentTrack) =>
         currentTrack.id !== track.id)
+      
     );
+    console.log(trackSearched);
   };
 
   const removeTrack = (track) => {
+    playlistTracks = savedTracks.filter((currentTrack) =>
+    currentTrack.id !== track.id)
+    //console.log(playlistTracks)
     setSavedTracks((prevTracks) =>
       prevTracks.filter((currentTrack) =>
         currentTrack.id !== track.id)
     );
     //realocating the trak on the search... right now misses one render to be updated with the 
-    console.log(searchResults)
-    console.log(savedTracks)
+    //console.log(searchResults)
+    //console.log(savedTracks)
     //setTrackSearched(searchResults.filter((track) =>
     //!savedTracks.some(item => item.id === track.id)));
     searchResultsFiltered = searchResults.filter(track =>
-      !savedTracks.some(item => item.id === track.id));
+      !playlistTracks.some(item => item.id === track.id));
+      console.log(searchResultsFiltered);
     setTrackSearched(searchResultsFiltered);
   };
 
